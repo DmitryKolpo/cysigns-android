@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">Cy Signs</string>
-    
-    <string name="traffic_signals_ahead">Светофор впереди</string>
-    <string name="Crossroads">Перекресток</string>
-    <string name="t_junction">Т-образный перекресток</string>
-</resources>

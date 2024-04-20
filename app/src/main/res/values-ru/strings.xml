@@ -1,16 +1,17 @@
 <resources>
     <string name="app_name">Cy Signs</string>
+    
+    <string name="traffic_signals_ahead">Светофор впереди</string>
+    <string name="crossroads">Перекресток</string>
+    <string name="t_junction">Т-образный перекресток</string>
+    <string name="side_road">Боковая дорога</string>
+    <string name="staggered_junction">Смещенный перекресток</string>
+    <string name="traffic_merges_from_the_left">Примыкание с левой стороны</string>
+    <string name="traffic_merges_onto_the_main_carriageway">Примыкание к главной дороге</string>
+    <string name="roundabout_warning">Кольцевое движение (предупреждение)</string>
+    <string name="bend_to_right_left_if_reversed">Поворот направо (налево, если зеркально)</string>
+    <string name="double_bend_first_to_the_left_right_if_reversed">Извилистый поворот налево (направо, если зеркально)</string>
 
-    <string name="traffic_signals_ahead">Traffic signals ahead</string>
-    <string name="crossroads">Crossroads</string>
-    <string name="t_junction">T-junction</string>
-    <string name="side_road">Side road</string>
-    <string name="staggered_junction">Staggered junction</string>
-    <string name="traffic_merges_from_the_left">Traffic merges from the left</string>
-    <string name="traffic_merges_onto_the_main_carriageway">Traffic merges onto the main carriageway</string>
-    <string name="roundabout_warning">Roundabout (warning)</string>
-    <string name="bend_to_right_left_if_reversed">Bend to right (left if reversed)</string>
-    <string name="double_bend_first_to_the_left_right_if_reversed">Double bend first to the left (right if reversed)</string>
     <string name="junction_on_a_bend_outside_may_be_reversed">Junction on a bend outside (may be reversed)</string>
     <string name="junction_on_a_bend_inside_may_be_reversed">Junction on a bend inside (may be reversed)</string>
     <string name="road_narrows_on_both_sides">Road narrows on both sides</string>
