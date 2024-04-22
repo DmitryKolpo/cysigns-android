@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import com.demacia.cysigns.features.info.ui.InfoScreen
 import com.demacia.cysigns.features.quiz.ui.QuizScreen
 import com.demacia.cysigns.ui.theme.CySignsTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,9 +21,10 @@ class MainActivity : ComponentActivity() {
             CySignsTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = Color.White,
                 ) {
-                    QuizScreen()
+//                    QuizScreen()
+                    InfoScreen()
                 }
             }
         }
