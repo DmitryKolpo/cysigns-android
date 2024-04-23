@@ -1,0 +1,17 @@
+package com.demacia.cysigns.features.quiz.ui
+
+import androidx.annotation.DrawableRes
+
+sealed interface QuizUiState {
+    data object Loading : QuizUiState
+    data class Content(
+        @DrawableRes val image: Int,
+        val answers: List<QuizViewModel.QuizUiAnswer>,
+        val statistic: Statistic,
+    ) : QuizUiState
+}
+
+data class Statistic(
+    val current: Int,
+    val total: Int,
+)

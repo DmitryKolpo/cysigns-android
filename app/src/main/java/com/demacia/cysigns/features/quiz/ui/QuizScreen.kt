@@ -5,11 +5,13 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -52,24 +54,31 @@ fun QuizScreen(
 
 @Composable
 private fun Content(
-    uiState: QuizViewModel.QuizUiState,
+    uiState: QuizUiState,
     sendEvent: (Event.Ui) -> Unit,
 ) {
     when (uiState) {
-        is QuizViewModel.QuizUiState.Loading -> Loading()
-        is QuizViewModel.QuizUiState.Content -> Data(uiState, sendEvent)
+        is QuizUiState.Loading -> Loading()
+        is QuizUiState.Content -> Data(uiState, sendEvent)
     }
 
 }
 
 @Composable
 private fun Data(
-    uiState: QuizViewModel.QuizUiState.Content,
+    uiState: QuizUiState.Content,
     sendEvent: (Event.Ui) -> Unit,
 ) {
     Column(
         Modifier.fillMaxSize()
     ) {
+        Spacer(height = 16.dp)
+        StatisticItem(
+            uiState.statistic,
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .fillMaxWidth()
+        )
         Image(
             painter = uiState.image.painter(),
             contentDescription = null,
@@ -86,6 +95,25 @@ private fun Data(
             )
         }
         Spacer(height = 8.dp)
+    }
+}
+
+@Composable
+private fun StatisticItem(
+    statistic: Statistic,
+    modifier: Modifier = Modifier,
+) {
+    Column(
+        modifier = modifier,
+    ) {
+        Row {
+            Text(text = "${statistic.current} / ${statistic.total}")
+        }
+        Spacer(height = 4.dp)
+        LinearProgressIndicator(
+            progress = { statistic.current.toFloat() / statistic.total.toFloat() },
+            modifier = Modifier.fillMaxWidth()
+        )
     }
 }
 
@@ -127,7 +155,7 @@ private fun Loading() {
 private fun Preview() {
     CySignsTheme {
         Content(
-            uiState = QuizViewModel.QuizUiState.Content(
+            uiState = QuizUiState.Content(
                 image = R.drawable.cyprus_road_sign_maximum_speed,
                 answers = listOf(
                     QuizViewModel.QuizUiAnswer(
@@ -151,6 +179,7 @@ private fun Preview() {
                         QuizViewModel.QuizUiAnswerColor.Neutral,
                     ),
                 ),
+                statistic = Statistic(11, 150)
             ),
             sendEvent = {}
         )

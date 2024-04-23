@@ -1,6 +1,5 @@
 package com.demacia.cysigns.features.quiz.ui
 
-import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -25,7 +24,9 @@ class QuizViewModel @Inject constructor(
     private val quizRepository: QuizRepository,
 ) : ViewModel() {
 
-    private val state = MutableStateFlow(QuizState(null, emptyList(), emptyList(), null))
+    private val state = MutableStateFlow(
+        QuizState(emptyList(), 0, null, emptyList(), emptyList(), null),
+    )
     val uiState: Flow<QuizUiState> = state
         .map { it.toUiState() }
         .flowOn(Dispatchers.Default)
@@ -54,12 +55,20 @@ class QuizViewModel @Inject constructor(
 
     private suspend fun handleInternalEvent(event: Event.Internal) {
         when (event) {
-            Event.Internal.OnInit -> loadNextQuestion()
+            Event.Internal.OnInit -> init()
         }
     }
 
-    private suspend fun loadNextQuestion() {
-        val question = quizRepository.getRandomQuestion()
+    private suspend fun init() {
+        val allQuestions = quizRepository.getQuestions().shuffled()
+        val question = allQuestions[0]
+        reduce(Action.SaveAllQuestions(allQuestions))
+        reduce(Action.SetQuestion(question))
+    }
+
+    private suspend fun loadNextQuestion(state: QuizState) {
+        reduce(Action.IncreaseIndex)
+        val question = state.allQuestions[state.currentQuestionIndex]
         reduce(Action.SetQuestion(question))
     }
 
@@ -74,11 +83,17 @@ class QuizViewModel @Inject constructor(
         } else {
             delay(2000)
         }
-        loadNextQuestion()
+        loadNextQuestion(state.value)
     }
 
     private suspend fun reduce(action: Action) {
         val newValue = when (action) {
+            is Action.SaveAllQuestions -> state.updateAndGet {
+                it.copy(
+                    allQuestions = action.questions,
+                )
+            }
+
             is Action.SetQuestion -> state.updateAndGet {
                 it.copy(
                     correctSign = action.question.correctSign,
@@ -90,6 +105,10 @@ class QuizViewModel @Inject constructor(
 
             is Action.SetSelectedAnswer -> state.updateAndGet {
                 it.copy(selectedSign = action.sign)
+            }
+
+            is Action.IncreaseIndex -> state.updateAndGet {
+                it.copy(currentQuestionIndex = state.value.currentQuestionIndex + 1)
             }
         }
         state.emit(newValue)
@@ -120,23 +139,19 @@ class QuizViewModel @Inject constructor(
         return QuizUiState.Content(
             image = correctSign.imageResId,
             answers = uiAnswers,
+            statistic = Statistic(currentQuestionIndex + 1, allQuestions.size),
         )
     }
 
     data class QuizState(
+        val allQuestions: List<QuizQuestion>,
+
+        val currentQuestionIndex: Int = 0,
         val correctSign: Signs?,
         val incorrectSigns: List<Signs>,
         val shuffledSigns: List<Signs>,
         val selectedSign: Signs?,
     )
-
-    sealed interface QuizUiState {
-        data object Loading : QuizUiState
-        data class Content(
-            @DrawableRes val image: Int,
-            val answers: List<QuizUiAnswer>,
-        ) : QuizUiState
-    }
 
     data class QuizUiAnswer(
         @StringRes val signName: Int,
@@ -160,8 +175,10 @@ sealed interface Event {
 }
 
 private sealed interface Action {
-    data class SetQuestion(val question: QuizQuestion) : Action
+    data class SaveAllQuestions(val questions: List<QuizQuestion>) : Action
     data class SetSelectedAnswer(val sign: Signs) : Action
+    data class SetQuestion(val question: QuizQuestion) : Action
+    data object IncreaseIndex : Action
 }
 
 sealed interface UiEffect {
