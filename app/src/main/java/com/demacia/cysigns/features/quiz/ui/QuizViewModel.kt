@@ -24,9 +24,7 @@ class QuizViewModel @Inject constructor(
     private val quizRepository: QuizRepository,
 ) : ViewModel() {
 
-    private val state = MutableStateFlow(
-        QuizState(emptyList(), 0, null, emptyList(), emptyList(), null),
-    )
+    private val state = MutableStateFlow(QuizState.default())
     val uiState: Flow<QuizUiState> = state
         .map { it.toUiState() }
         .flowOn(Dispatchers.Default)
@@ -63,13 +61,16 @@ class QuizViewModel @Inject constructor(
         val allQuestions = quizRepository.getQuestions().shuffled()
         val question = allQuestions[0]
         reduce(Action.SaveAllQuestions(allQuestions))
-        reduce(Action.SetQuestion(question))
+        reduce(Action.SetQuestion(question, 0))
     }
 
     private suspend fun loadNextQuestion(state: QuizState) {
-        reduce(Action.IncreaseIndex)
-        val question = state.allQuestions[state.currentQuestionIndex]
-        reduce(Action.SetQuestion(question))
+        //TODO: if last question, show finish screen
+        if (state.currentQuestionIndex == state.allQuestions.lastIndex) return
+
+        val nextIndex = state.currentQuestionIndex + 1
+        val question = state.allQuestions[nextIndex]
+        reduce(Action.SetQuestion(question, state.currentQuestionIndex + 1))
     }
 
     private suspend fun checkAnswer(signOrdinal: Int) {
@@ -77,12 +78,8 @@ class QuizViewModel @Inject constructor(
         val correctSign = state.value.correctSign
         val isCorrectAnswer = correctSign == selectedSign
 
-        reduce(Action.SetSelectedAnswer(selectedSign))
-        if (isCorrectAnswer) {
-            delay(1000)
-        } else {
-            delay(2000)
-        }
+        reduce(Action.SetSelectedAnswer(selectedSign, isCorrectAnswer))
+        delay(if (isCorrectAnswer) 1000 else 2000)
         loadNextQuestion(state.value)
     }
 
@@ -100,58 +97,20 @@ class QuizViewModel @Inject constructor(
                     incorrectSigns = action.question.incorrectSigns,
                     shuffledSigns = (action.question.incorrectSigns + action.question.correctSign).shuffled(),
                     selectedSign = null,
+                    currentQuestionIndex = action.index,
                 )
             }
 
             is Action.SetSelectedAnswer -> state.updateAndGet {
-                it.copy(selectedSign = action.sign)
-            }
-
-            is Action.IncreaseIndex -> state.updateAndGet {
-                it.copy(currentQuestionIndex = state.value.currentQuestionIndex + 1)
+                it.copy(
+                    selectedSign = action.sign,
+                    correctAnswers = state.value.correctAnswers.run { if (action.isCorrect) this + 1 else this },
+                    incorrectAnswers = state.value.incorrectAnswers.run { if (!action.isCorrect) this + 1 else this },
+                )
             }
         }
         state.emit(newValue)
     }
-
-    private fun QuizState.toUiState(): QuizUiState {
-        fun getUiSignColor(
-            currentSign: Signs,
-            selectedSign: Signs?,
-            correctSign: Signs,
-        ): QuizUiAnswerColor {
-            if (selectedSign == null) return QuizUiAnswerColor.Neutral
-
-            if (currentSign == correctSign) return QuizUiAnswerColor.Correct
-            if (currentSign == selectedSign) return QuizUiAnswerColor.Incorrect
-            return QuizUiAnswerColor.Neutral
-        }
-
-        if (correctSign == null) return QuizUiState.Loading
-        val uiAnswers = shuffledSigns.map {
-            QuizUiAnswer(
-                signName = it.signName,
-                signOrdinal = it.ordinal,
-                color = getUiSignColor(it, selectedSign, correctSign),
-            )
-        }
-
-        return QuizUiState.Content(
-            image = correctSign.imageResId,
-            answers = uiAnswers,
-            statistic = Statistic(currentQuestionIndex + 1, allQuestions.size),
-        )
-    }
-
-    data class QuizState(
-        val allQuestions: List<QuizQuestion>,
-
-        val currentQuestionIndex: Int = 0,
-        val correctSign: Signs?,
-        val incorrectSigns: List<Signs>,
-        val shuffledSigns: List<Signs>,
-        val selectedSign: Signs?,
-    )
 
     data class QuizUiAnswer(
         @StringRes val signName: Int,
@@ -176,9 +135,8 @@ sealed interface Event {
 
 private sealed interface Action {
     data class SaveAllQuestions(val questions: List<QuizQuestion>) : Action
-    data class SetSelectedAnswer(val sign: Signs) : Action
-    data class SetQuestion(val question: QuizQuestion) : Action
-    data object IncreaseIndex : Action
+    data class SetSelectedAnswer(val sign: Signs, val isCorrect: Boolean) : Action
+    data class SetQuestion(val question: QuizQuestion, val index: Int) : Action
 }
 
 sealed interface UiEffect {

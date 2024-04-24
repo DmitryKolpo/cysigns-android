@@ -9,8 +9,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -108,6 +112,24 @@ private fun StatisticItem(
     ) {
         Row {
             Text(text = "${statistic.current} / ${statistic.total}")
+            Spacer(1f)
+            Icon(
+                imageVector = Icons.Default.Check,
+                contentDescription = null,
+                tint = Color.Green,
+            )
+            Text(
+                text = statistic.correct.toString(),
+            )
+            Spacer(width = 4.dp)
+            Icon(
+                imageVector = Icons.Default.Close,
+                contentDescription = null,
+                tint = Color.Red,
+            )
+            Text(
+                text = statistic.incorrect.toString(),
+            )
         }
         Spacer(height = 4.dp)
         LinearProgressIndicator(
@@ -179,7 +201,7 @@ private fun Preview() {
                         QuizViewModel.QuizUiAnswerColor.Neutral,
                     ),
                 ),
-                statistic = Statistic(11, 150)
+                statistic = Statistic(11, 150, 5, 1)
             ),
             sendEvent = {}
         )
