@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
@@ -21,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -98,7 +100,8 @@ private fun Data(
                 sendEvent = sendEvent,
             )
         }
-        Spacer(height = 8.dp)
+        NextButton(uiState, sendEvent)
+        Spacer(height = 16.dp)
     }
 }
 
@@ -134,7 +137,9 @@ private fun StatisticItem(
         Spacer(height = 4.dp)
         LinearProgressIndicator(
             progress = { statistic.current.toFloat() / statistic.total.toFloat() },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(50))
         )
     }
 }
@@ -164,6 +169,22 @@ private fun AnswerButton(
             text = answer.signName.resource(),
             color = Color.Black,
         )
+    }
+}
+
+@Composable
+private fun NextButton(
+    state: QuizUiState.Content,
+    sendEvent: (Event.Ui) -> Unit,
+) {
+    Button(
+        enabled = state.nextButtonEnabled,
+        onClick = { sendEvent(Event.Ui.OnNextClick) },
+        modifier = Modifier
+            .padding(horizontal = 16.dp)
+            .fillMaxWidth()
+    ) {
+        Text(text = "Next")
     }
 }
 
@@ -201,7 +222,8 @@ private fun Preview() {
                         QuizViewModel.QuizUiAnswerColor.Neutral,
                     ),
                 ),
-                statistic = Statistic(11, 150, 5, 1)
+                statistic = Statistic(11, 150, 5, 1),
+                nextButtonEnabled = true,
             ),
             sendEvent = {}
         )

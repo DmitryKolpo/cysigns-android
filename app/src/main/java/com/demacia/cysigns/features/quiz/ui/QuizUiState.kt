@@ -8,6 +8,7 @@ sealed interface QuizUiState {
         @DrawableRes val image: Int,
         val answers: List<QuizViewModel.QuizUiAnswer>,
         val statistic: Statistic,
+        val nextButtonEnabled: Boolean,
     ) : QuizUiState
 }
 

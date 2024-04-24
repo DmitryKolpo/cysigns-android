@@ -33,5 +33,6 @@ internal fun QuizState.toUiState(): QuizUiState {
             correct = correctAnswers,
             incorrect = incorrectAnswers,
         ),
+        nextButtonEnabled = selectedSign != null,
     )
 }

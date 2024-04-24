@@ -9,7 +9,6 @@ import com.demacia.cysigns.features.quiz.domain.QuizRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flowOn
@@ -47,7 +46,8 @@ class QuizViewModel @Inject constructor(
 
     private suspend fun handleUiEvent(event: Event.Ui) {
         when (event) {
-            is Event.Ui.OnSignClick -> checkAnswer(event.signOrdinal)
+            is Event.Ui.OnSignClick -> onSignClicked(event.signOrdinal)
+            is Event.Ui.OnNextClick -> loadNextQuestion(state.value)
         }
     }
 
@@ -62,6 +62,12 @@ class QuizViewModel @Inject constructor(
         val question = allQuestions[0]
         reduce(Action.SaveAllQuestions(allQuestions))
         reduce(Action.SetQuestion(question, 0))
+    }
+
+    private suspend fun onSignClicked(signOrdinal: Int) {
+        if (state.value.selectedSign != null) return
+
+        checkAnswer(signOrdinal)
     }
 
     private suspend fun loadNextQuestion(state: QuizState) {
@@ -79,8 +85,6 @@ class QuizViewModel @Inject constructor(
         val isCorrectAnswer = correctSign == selectedSign
 
         reduce(Action.SetSelectedAnswer(selectedSign, isCorrectAnswer))
-        delay(if (isCorrectAnswer) 1000 else 2000)
-        loadNextQuestion(state.value)
     }
 
     private suspend fun reduce(action: Action) {
@@ -126,6 +130,7 @@ class QuizViewModel @Inject constructor(
 sealed interface Event {
     sealed interface Ui : Event {
         data class OnSignClick(val signOrdinal: Int) : Ui
+        data object OnNextClick : Ui
     }
 
     sealed interface Internal : Event {
