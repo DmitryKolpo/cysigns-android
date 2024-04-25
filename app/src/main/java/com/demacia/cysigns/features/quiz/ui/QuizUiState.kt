@@ -10,6 +10,9 @@ sealed interface QuizUiState {
         val statistic: Statistic,
         val nextButtonEnabled: Boolean,
     ) : QuizUiState
+    data class Finished(
+        val statistic: Statistic,
+    ): QuizUiState
 }
 
 data class Statistic(

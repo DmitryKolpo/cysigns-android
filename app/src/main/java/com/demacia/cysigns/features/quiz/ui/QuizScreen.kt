@@ -9,18 +9,22 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -66,8 +70,52 @@ private fun Content(
     when (uiState) {
         is QuizUiState.Loading -> Loading()
         is QuizUiState.Content -> Data(uiState, sendEvent)
+        is QuizUiState.Finished -> GGWP(uiState, sendEvent)
     }
 
+}
+
+@Composable
+private fun GGWP(
+    uiState: QuizUiState.Finished,
+    sendEvent: (Event.Ui) -> Unit,
+) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize(),
+    ) {
+        Spacer(1f)
+        Icon(
+            imageVector = Icons.Default.ThumbUp,
+            contentDescription = null,
+            tint = Color(255, 191, 0),
+            modifier = Modifier
+                .size(100.dp)
+                .align(Alignment.CenterHorizontally)
+        )
+        Spacer(height = 16.dp)
+        Text(
+            text = R.string.congratulations.resource(),
+            style = MaterialTheme.typography.titleLarge,
+        )
+        Spacer(height = 16.dp)
+        Text(
+            text = R.string.score.resource(),
+            style = MaterialTheme.typography.titleMedium,
+        )
+        Spacer(height = 8.dp)
+        Text(
+            text = "${uiState.statistic.correct} / ${uiState.statistic.total}",
+            style = MaterialTheme.typography.titleMedium,
+        )
+        Spacer(1f)
+        NextButton(
+            enabled = true,
+            title = R.string.new_game.resource(),
+            onClick = { sendEvent(Event.Ui.OnNewGameClick) },
+        )
+        Spacer(height = 16.dp)
+    }
 }
 
 @Composable
@@ -100,7 +148,11 @@ private fun Data(
                 sendEvent = sendEvent,
             )
         }
-        NextButton(uiState, sendEvent)
+        NextButton(
+            enabled = uiState.nextButtonEnabled,
+            title = R.string.next_button.resource(),
+            onClick = { sendEvent(Event.Ui.OnNextClick) },
+        )
         Spacer(height = 16.dp)
     }
 }
@@ -174,17 +226,18 @@ private fun AnswerButton(
 
 @Composable
 private fun NextButton(
-    state: QuizUiState.Content,
-    sendEvent: (Event.Ui) -> Unit,
+    enabled: Boolean,
+    title: String,
+    onClick: () -> Unit,
 ) {
     Button(
-        enabled = state.nextButtonEnabled,
-        onClick = { sendEvent(Event.Ui.OnNextClick) },
+        enabled = enabled,
+        onClick = onClick,
         modifier = Modifier
             .padding(horizontal = 16.dp)
             .fillMaxWidth()
     ) {
-        Text(text = "Next")
+        Text(text = title)
     }
 }
 
@@ -225,6 +278,17 @@ private fun Preview() {
                 statistic = Statistic(11, 150, 5, 1),
                 nextButtonEnabled = true,
             ),
+            sendEvent = {}
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun PreviewFinish() {
+    CySignsTheme {
+        Content(
+            uiState = QuizUiState.Finished(Statistic(11, 150, 5, 1)),
             sendEvent = {}
         )
     }

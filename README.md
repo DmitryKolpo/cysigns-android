@@ -6,3 +6,5 @@
  - Quiz variant: connect 4 images with 4 names.
  - Quiz difficulty: make answers more similar to each other
 
+## Features
+ - Per-app language preferences (en, ru)

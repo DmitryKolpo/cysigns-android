@@ -15,6 +15,8 @@ data class QuizState(
 
     val correctAnswers: Int,
     val incorrectAnswers: Int,
+
+    val isFinished: Boolean,
 ) {
     companion object {
         fun default(): QuizState {
@@ -27,6 +29,7 @@ data class QuizState(
                 selectedSign = null,
                 correctAnswers = 0,
                 incorrectAnswers = 0,
+                isFinished = false,
             )
         }
     }

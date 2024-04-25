@@ -16,6 +16,8 @@ internal fun QuizState.toUiState(): QuizUiState {
     }
 
     if (correctSign == null) return QuizUiState.Loading
+    if (isFinished) return QuizUiState.Finished(getStatistics())
+
     val uiAnswers = shuffledSigns.map {
         QuizViewModel.QuizUiAnswer(
             signName = it.signName,
@@ -27,12 +29,16 @@ internal fun QuizState.toUiState(): QuizUiState {
     return QuizUiState.Content(
         image = correctSign.imageResId,
         answers = uiAnswers,
-        statistic = Statistic(
-            current = currentQuestionIndex + 1,
-            total = allQuestions.size,
-            correct = correctAnswers,
-            incorrect = incorrectAnswers,
-        ),
+        statistic = getStatistics(),
         nextButtonEnabled = selectedSign != null,
+    )
+}
+
+private fun QuizState.getStatistics(): Statistic {
+    return Statistic(
+        current = currentQuestionIndex + 1,
+        total = allQuestions.size,
+        correct = correctAnswers,
+        incorrect = incorrectAnswers,
     )
 }
