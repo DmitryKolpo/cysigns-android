@@ -50,6 +50,7 @@ class QuizViewModel @Inject constructor(
             is Event.Ui.OnSignClick -> onSignClicked(event.signOrdinal)
             is Event.Ui.OnNextClick -> onNextClick(state.value)
             is Event.Ui.OnNewGameClick -> loadNewGame()
+            is Event.Ui.OnInfoClick -> TODO()
         }
     }
 
@@ -161,6 +162,7 @@ sealed interface Event {
         data class OnSignClick(val signOrdinal: Int) : Ui
         data object OnNextClick : Ui
         data object OnNewGameClick : Ui
+        data object OnInfoClick : Ui
     }
 
     sealed interface Internal : Event {

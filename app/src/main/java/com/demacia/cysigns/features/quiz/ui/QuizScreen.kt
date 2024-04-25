@@ -3,20 +3,24 @@ package com.demacia.cysigns.features.quiz.ui
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -35,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.demacia.cysigns.R
 import com.demacia.cysigns.data.Signs
+import com.demacia.cysigns.ui.components.PrimaryButton
 import com.demacia.cysigns.ui.theme.CySignsTheme
 import com.demacia.cysigns.utils.Spacer
 import com.demacia.cysigns.utils.painter
@@ -72,7 +77,6 @@ private fun Content(
         is QuizUiState.Content -> Data(uiState, sendEvent)
         is QuizUiState.Finished -> GGWP(uiState, sendEvent)
     }
-
 }
 
 @Composable
@@ -82,7 +86,9 @@ private fun GGWP(
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .safeDrawingPadding()
     ) {
         Spacer(1f)
         Icon(
@@ -109,7 +115,7 @@ private fun GGWP(
             style = MaterialTheme.typography.titleMedium,
         )
         Spacer(1f)
-        NextButton(
+        PrimaryButton(
             enabled = true,
             title = R.string.new_game.resource(),
             onClick = { sendEvent(Event.Ui.OnNewGameClick) },
@@ -124,19 +130,37 @@ private fun Data(
     sendEvent: (Event.Ui) -> Unit,
 ) {
     Column(
-        Modifier.fillMaxSize()
+        Modifier
+            .fillMaxSize()
+            .safeDrawingPadding()
     ) {
-        Spacer(height = 16.dp)
-        StatisticItem(
-            uiState.statistic,
-            modifier = Modifier
-                .padding(horizontal = 16.dp)
-                .fillMaxWidth()
-        )
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            StatisticItem(
+                uiState.statistic,
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+                    .weight(1f)
+            )
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .size(50.dp)
+                    .clickable { sendEvent(Event.Ui.OnInfoClick) }
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Info,
+                    contentDescription = null,
+                    modifier = Modifier.size(32.dp)
+                )
+            }
+        }
         Image(
             painter = uiState.image.painter(),
             contentDescription = null,
-            contentScale = ContentScale.Inside,
+            contentScale = ContentScale.Fit,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
@@ -148,7 +172,7 @@ private fun Data(
                 sendEvent = sendEvent,
             )
         }
-        NextButton(
+        PrimaryButton(
             enabled = uiState.nextButtonEnabled,
             title = R.string.next_button.resource(),
             onClick = { sendEvent(Event.Ui.OnNextClick) },
@@ -221,23 +245,6 @@ private fun AnswerButton(
             text = answer.signName.resource(),
             color = Color.Black,
         )
-    }
-}
-
-@Composable
-private fun NextButton(
-    enabled: Boolean,
-    title: String,
-    onClick: () -> Unit,
-) {
-    Button(
-        enabled = enabled,
-        onClick = onClick,
-        modifier = Modifier
-            .padding(horizontal = 16.dp)
-            .fillMaxWidth()
-    ) {
-        Text(text = title)
     }
 }
 
