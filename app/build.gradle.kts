@@ -73,8 +73,8 @@ dependencies {
     implementation(libs.hilt.navigation)
     implementation(libs.hilt.navigation.compose)
 
-//    implementation(libs.decompose)
-//    implementation(libs.extensions.compose)
+    implementation(libs.decompose)
+    implementation(libs.decompose.extensions.compose)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

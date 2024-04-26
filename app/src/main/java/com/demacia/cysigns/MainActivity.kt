@@ -9,6 +9,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import com.demacia.cysigns.features.info.ui.InfoScreen
+import com.demacia.cysigns.features.quiz.ui.Mode
 import com.demacia.cysigns.features.quiz.ui.QuizScreen
 import com.demacia.cysigns.ui.theme.CySignsTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,7 +29,7 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize()
                 ) {
-                    QuizScreen()
+                    QuizScreen(mode = Mode.ByName)
 //                    InfoScreen()
                 }
             }

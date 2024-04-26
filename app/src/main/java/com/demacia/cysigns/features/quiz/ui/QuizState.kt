@@ -6,6 +6,7 @@ import com.demacia.cysigns.features.quiz.data.QuizQuestion
 
 data class QuizState(
     val allQuestions: List<QuizQuestion>,
+    val mode: Mode?,
 
     val currentQuestionIndex: Int = 0,
     val correctSign: Signs?,
@@ -22,6 +23,7 @@ data class QuizState(
         fun default(): QuizState {
             return QuizState(
                 allQuestions = emptyList(),
+                mode = null,
                 currentQuestionIndex = 0,
                 correctSign = null,
                 incorrectSigns = emptyList(),
@@ -33,4 +35,8 @@ data class QuizState(
             )
         }
     }
+}
+
+enum class Mode {
+    ByPicture, ByName
 }

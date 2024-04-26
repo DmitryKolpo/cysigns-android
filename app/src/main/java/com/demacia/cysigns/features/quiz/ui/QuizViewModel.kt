@@ -1,12 +1,15 @@
 package com.demacia.cysigns.features.quiz.ui
 
-import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.demacia.cysigns.data.Signs
 import com.demacia.cysigns.features.quiz.data.QuizQuestion
 import com.demacia.cysigns.features.quiz.domain.QuizRepository
-import com.demacia.cysigns.features.quiz.ui.Action.*
+import com.demacia.cysigns.features.quiz.ui.Action.PerkeleGame
+import com.demacia.cysigns.features.quiz.ui.Action.SaveAllQuestions
+import com.demacia.cysigns.features.quiz.ui.Action.SetQuestion
+import com.demacia.cysigns.features.quiz.ui.Action.SetSelectedAnswer
+import com.demacia.cysigns.features.quiz.ui.Action.StartNewGame
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
@@ -56,13 +59,12 @@ class QuizViewModel @Inject constructor(
 
     private suspend fun handleInternalEvent(event: Event.Internal) {
         when (event) {
-            Event.Internal.OnInit -> init()
+            is Event.Internal.OnInit -> init()
+            is Event.Internal.SetMode -> reduce(Action.SetMode(event.mode))
         }
     }
 
     private suspend fun init() {
-        //TODO: Implement progress saving in prefs.
-        // If progress exist don't start new game, but load old one.
         loadNewGame()
     }
 
@@ -139,21 +141,16 @@ class QuizViewModel @Inject constructor(
                     isFinished = false,
                 )
             }
+
             is PerkeleGame -> state.updateAndGet {
                 it.copy(isFinished = true)
             }
+
+            is Action.SetMode -> state.updateAndGet {
+                it.copy(mode = action.mode)
+            }
         }
         state.emit(newValue)
-    }
-
-    data class QuizUiAnswer(
-        @StringRes val signName: Int,
-        val signOrdinal: Int,
-        val color: QuizUiAnswerColor,
-    )
-
-    enum class QuizUiAnswerColor {
-        Neutral, Correct, Incorrect,
     }
 }
 
@@ -167,14 +164,17 @@ sealed interface Event {
 
     sealed interface Internal : Event {
         data object OnInit : Internal
+        data class SetMode(val mode: Mode) : Internal
     }
 }
 
 private sealed interface Action {
+    data class SetMode(val mode: Mode) : Action
+
     data class StartNewGame(
         val questions: List<QuizQuestion>,
         val firstQuestion: QuizQuestion,
-    ): Action
+    ) : Action
 
     data class SaveAllQuestions(val questions: List<QuizQuestion>) : Action
     data class SetSelectedAnswer(val sign: Signs, val isCorrect: Boolean) : Action
