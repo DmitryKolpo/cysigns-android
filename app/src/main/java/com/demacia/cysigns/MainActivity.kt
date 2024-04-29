@@ -1,38 +1,25 @@
 package com.demacia.cysigns
 
-import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Surface
-import androidx.compose.ui.Modifier
-import com.demacia.cysigns.features.info.ui.InfoScreen
-import com.demacia.cysigns.features.quiz.ui.Mode
-import com.demacia.cysigns.features.quiz.ui.QuizScreen
-import com.demacia.cysigns.ui.theme.CySignsTheme
+import com.arkivanov.decompose.ExperimentalDecomposeApi
+import com.arkivanov.decompose.defaultComponentContext
+import com.arkivanov.decompose.retainedComponent
+import com.demacia.shared.root.DefaultRootComponent
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
+    @OptIn(ExperimentalDecomposeApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge(
-            statusBarStyle = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT),
-        )
 
-        setContent {
-            CySignsTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize()
-                ) {
-                    QuizScreen(mode = Mode.ByName)
-//                    InfoScreen()
-                }
-            }
-        }
+        val root = retainedComponent { DefaultRootComponent(it) }
+
+        enableEdgeToEdge()
+        setContent { RootScreen(component = root) }
     }
 }

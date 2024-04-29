@@ -10,9 +10,9 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun PrimaryButton(
-    enabled: Boolean,
     title: String,
-    onClick: () -> Unit,
+    enabled: Boolean = true,
+    onClick: () -> Unit = {},
 ) {
     Button(
         enabled = enabled,

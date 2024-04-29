@@ -53,7 +53,7 @@ class QuizViewModel @Inject constructor(
             is Event.Ui.OnSignClick -> onSignClicked(event.signOrdinal)
             is Event.Ui.OnNextClick -> onNextClick(state.value)
             is Event.Ui.OnNewGameClick -> loadNewGame()
-            is Event.Ui.OnInfoClick -> TODO()
+            is Event.Ui.OnInfoClick -> onInfoClick()
         }
     }
 
@@ -86,6 +86,10 @@ class QuizViewModel @Inject constructor(
         } else {
             loadNextQuestion(state)
         }
+    }
+
+    private suspend fun onInfoClick() {
+        _effect.send(UiEffect.OpenInfo)
     }
 
     private suspend fun loadNextQuestion(state: QuizState) {
@@ -184,4 +188,5 @@ private sealed interface Action {
 
 sealed interface UiEffect {
     data class ShowToast(val text: String) : UiEffect
+    data object OpenInfo : UiEffect
 }

@@ -20,7 +20,6 @@ internal fun QuizState.toUiState(): QuizUiState {
     if (correctSign == null) return QuizUiState.Loading
     if (isFinished) return QuizUiState.Finished(getStatistics())
 
-    println("123 $mode")
     return when (mode) {
         null -> QuizUiState.Loading
         Mode.ByPicture -> {

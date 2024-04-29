@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -30,29 +31,15 @@ import com.demacia.cysigns.utils.painter
 import com.demacia.cysigns.utils.resource
 
 @Composable
-fun InfoScreen(
-
-) {
-    val state = InfoUiState(
-        Signs.entries.map {
-            InfoSignUi(
-                imageRes = it.imageResId,
-                name = it.signName.resource(),
-            )
-        }
-    )
-
-    Content(state = state)
-}
-
-@Composable
-private fun Content(
+internal fun InfoContent(
     state: InfoUiState,
 ) {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(8.dp),
-        contentPadding = PaddingValues(16.dp),
-        modifier = Modifier.fillMaxSize()
+        contentPadding = PaddingValues(top = 16.dp, bottom = 32.dp, start = 8.dp, end = 8.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .statusBarsPadding()
     ) {
         items(state.signs.count()) {
             val item = state.signs[it]
@@ -107,7 +94,7 @@ private fun SignIcon(
 @Composable
 private fun Preview() {
     MaterialTheme {
-        Content(
+        InfoContent(
             state = InfoUiState(
                 Signs.entries.map {
                     InfoSignUi(

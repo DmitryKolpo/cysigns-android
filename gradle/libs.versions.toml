@@ -1,17 +1,22 @@
 [versions]
 agp = "8.3.2"
-decompose = "3.0.0-alpha09"
 kotlin = "1.9.23"
 coreKtx = "1.13.0"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
 lifecycleRuntimeKtx = "2.7.0"
+minSdk = "29"
+compileSdk = "34"
+targetSdk = "34"
 activityCompose = "1.9.0"
 composeBom = "2024.04.01"
 hilt = "1.2.0"
 dagger-hilt="2.49"
 org-jetbrains-kotlin-android = "1.9.23"
+appcompat = "1.6.1"
+material = "1.11.0"
+decompose = "3.0.0-alpha09"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -35,10 +40,13 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref="dagger-hilt" }
 hilt-navigation = { module = "androidx.hilt:hilt-navigation", version.ref = "hilt" }
 hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 com-google-dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "dagger-hilt" }
 org-jetbrains-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "org-jetbrains-kotlin-android" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
 

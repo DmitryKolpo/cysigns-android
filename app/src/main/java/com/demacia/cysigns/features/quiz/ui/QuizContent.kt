@@ -1,7 +1,7 @@
 package com.demacia.cysigns.features.quiz.ui
 
-import android.widget.Toast
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -13,19 +13,16 @@ import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.demacia.cysigns.R
 import com.demacia.cysigns.data.Signs
 import com.demacia.cysigns.features.quiz.ui.by_name.ByNameContent
@@ -40,35 +37,7 @@ import com.demacia.cysigns.utils.Spacer
 import com.demacia.cysigns.utils.resource
 
 @Composable
-fun QuizScreen(
-    mode: Mode,
-    viewModel: QuizViewModel = hiltViewModel(),
-) {
-    val uiState = viewModel.uiState.collectAsState(initial = null).value
-        ?: return Box(modifier = Modifier.fillMaxSize())
-
-    LaunchedEffect(Unit) {
-        println("SetMode")
-        viewModel.sendEvent(Event.Internal.SetMode(mode))
-    }
-
-    val context = LocalContext.current
-    LaunchedEffect(Unit) {
-        viewModel.effect.collect {
-            when (it) {
-                is UiEffect.ShowToast -> Toast.makeText(context, it.text, Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-    Content(
-        uiState = uiState,
-        sendEvent = viewModel::sendEvent,
-    )
-}
-
-@Composable
-private fun Content(
+internal fun QuizContent(
     uiState: QuizUiState,
     sendEvent: (Event.Ui) -> Unit,
 ) {
@@ -131,11 +100,16 @@ private fun TopPart(
             contentAlignment = Alignment.Center,
             modifier = Modifier
                 .size(50.dp)
-                .clickable { sendEvent(Event.Ui.OnInfoClick) }
+                .clickable(
+                    onClick = { sendEvent(Event.Ui.OnInfoClick) },
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = rememberRipple(bounded = false),
+                )
         ) {
             Icon(
                 imageVector = Icons.Default.Info,
                 contentDescription = null,
+                tint = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier.size(32.dp)
             )
         }
@@ -158,7 +132,7 @@ private fun ColumnScope.MiddlePart(
 @Composable
 private fun Preview() {
     CySignsTheme {
-        Content(
+        QuizContent(
             uiState = QuizUiState.Content.ByPicture(
                 image = R.drawable.cyprus_road_sign_maximum_speed,
                 answers = listOf(
@@ -195,7 +169,7 @@ private fun Preview() {
 @Composable
 private fun PreviewFinish() {
     CySignsTheme {
-        Content(
+        QuizContent(
             uiState = QuizUiState.Finished(Statistic(11, 150, 5, 1)),
             sendEvent = {}
         )
