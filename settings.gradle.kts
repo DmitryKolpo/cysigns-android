@@ -21,4 +21,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "Cy Signs"
 include(":app")
-include(":shared")

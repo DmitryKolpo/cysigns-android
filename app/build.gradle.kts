@@ -57,8 +57,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":shared"))
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -68,13 +66,14 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
+    //DI: hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
     implementation(libs.hilt.navigation)
     implementation(libs.hilt.navigation.compose)
 
-    implementation(libs.decompose)
-    implementation(libs.decompose.extensions.compose)
+    //Navigation:
+    implementation(libs.androidx.navigation.compose)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

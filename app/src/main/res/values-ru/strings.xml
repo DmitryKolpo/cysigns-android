@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Cy Signs</string>
 
+    <string name="start_new_picture_game">Гадать по картинке</string>
+    <string name="start_new_name_game">Гадать по названию</string>
+
     <string name="next_button">Дальше</string>
     <string name="new_game">По новой</string>
     <string name="congratulations">Успех!</string>

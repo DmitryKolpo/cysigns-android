@@ -11,22 +11,26 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.demacia.cysigns.features.quiz.ui.Event
 import com.demacia.cysigns.features.quiz.ui.Mode
-import com.demacia.cysigns.features.quiz.ui.Mode.Companion.toUiMode
 import com.demacia.cysigns.features.quiz.ui.QuizContent
 import com.demacia.cysigns.features.quiz.ui.QuizViewModel
 import com.demacia.cysigns.features.quiz.ui.UiEffect
-import com.demacia.shared.components.game.GameComponent
 
 @Composable
 fun QuizScreen(
-    component: GameComponent,
+    mode: String,
+    openInfo: () -> Unit,
     viewModel: QuizViewModel = hiltViewModel(),
 ) {
     val uiState = viewModel.uiState.collectAsState(initial = null).value
         ?: return Box(modifier = Modifier.fillMaxSize())
 
     LaunchedEffect(Unit) {
-        viewModel.sendEvent(Event.Internal.SetMode(component.mode.toUiMode()))
+        val quizMode = when (mode) {
+            "name" -> Mode.ByName
+            "picture" -> Mode.ByPicture
+            else -> throw IllegalArgumentException("Incorrect quiz mode. Passed mode:$mode")
+        }
+        viewModel.sendEvent(Event.Internal.SetMode(quizMode))
     }
 
     val context = LocalContext.current
@@ -34,9 +38,7 @@ fun QuizScreen(
         viewModel.effect.collect {
             when (it) {
                 is UiEffect.ShowToast -> Toast.makeText(context, it.text, Toast.LENGTH_SHORT).show()
-                is UiEffect.OpenInfo -> {
-                    component.onInfoClicked()
-                }
+                is UiEffect.OpenInfo -> openInfo()
             }
         }
     }

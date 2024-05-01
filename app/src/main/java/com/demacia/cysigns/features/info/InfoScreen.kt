@@ -6,11 +6,9 @@ import com.demacia.cysigns.features.info.ui.InfoContent
 import com.demacia.cysigns.features.info.ui.InfoSignUi
 import com.demacia.cysigns.features.info.ui.InfoUiState
 import com.demacia.cysigns.utils.resource
-import com.demacia.shared.components.info.InfoComponent
 
 @Composable
 fun InfoScreen(
-    component: InfoComponent,
 ) {
     val state = InfoUiState(
         Signs.entries.map {

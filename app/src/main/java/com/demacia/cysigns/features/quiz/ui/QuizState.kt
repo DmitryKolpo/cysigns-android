@@ -2,7 +2,6 @@ package com.demacia.cysigns.features.quiz.ui
 
 import com.demacia.cysigns.data.Signs
 import com.demacia.cysigns.features.quiz.data.QuizQuestion
-import com.demacia.shared.components.game.GameMode
 
 
 data class QuizState(
@@ -40,13 +39,4 @@ data class QuizState(
 
 enum class Mode {
     ByPicture, ByName;
-
-    companion object {
-        fun GameMode.toUiMode(): Mode {
-            return when (this) {
-                GameMode.ByName -> ByName
-                GameMode.ByPicture -> ByPicture
-            }
-        }
-    }
 }
