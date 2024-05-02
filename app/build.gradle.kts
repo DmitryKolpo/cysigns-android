@@ -54,6 +54,9 @@ android {
     androidResources {
         generateLocaleConfig = true
     }
+    sourceSets.getByName("main") {
+        res.setSrcDirs(listOf("src/main/res", "src/main/mysoooperres"))
+    }
 }
 
 dependencies {

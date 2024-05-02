@@ -1,11 +1,11 @@
 package com.demacia.cysigns
 
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -19,7 +19,7 @@ import com.demacia.cysigns.ui.theme.CySignsTheme
 fun RootScreen() {
     CySignsTheme {
         Surface(
-            color = MaterialTheme.colorScheme.background,
+            color = Color(242, 242, 242),
             modifier = Modifier.fillMaxSize()
         ) {
             RootNavHost()
@@ -34,8 +34,8 @@ private fun RootNavHost() {
         navController.createGraph(startDestination = "home") {
             composable("home") {
                 HomeScreen(
-                    startPictureQuiz = { navController.navigate("quiz/name") },
-                    startNameQuiz = { navController.navigate("quiz/picture") },
+                    startPictureQuiz = { navController.navigate("quiz/picture") },
+                    startNameQuiz = { navController.navigate("quiz/name") },
                 )
             }
             //TODO: implement Safe Arguments
