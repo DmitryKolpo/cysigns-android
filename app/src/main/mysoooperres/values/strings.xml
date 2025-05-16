@@ -1,0 +1,246 @@
+<resources>
+    <!--    Signs   -->
+    <string name="traffic_signals_ahead">Traffic signals ahead</string>
+    <string name="crossroads">Crossroads</string>
+    <string name="t_junction">T-junction</string>
+    <string name="side_road">Side road</string>
+    <string name="staggered_junction">Staggered junction</string>
+    <string name="traffic_merges_from_the_left">Traffic merges from the left</string>
+    <string name="traffic_merges_onto_the_main_carriageway">Traffic merges onto the main carriageway</string>
+    <string name="roundabout_warning">Roundabout (warning)</string>
+    <string name="bend_to_right_left_if_reversed">Bend to right (left if reversed)</string>
+    <string name="double_bend_first_to_the_left_right_if_reversed">Double bend first to the left (right if reversed)</string>
+    <string name="junction_on_a_bend_outside_may_be_reversed">Junction on a bend outside (may be reversed)</string>
+    <string name="junction_on_a_bend_inside_may_be_reversed">Junction on a bend inside (may be reversed)</string>
+    <string name="road_narrows_on_both_sides">Road narrows on both sides</string>
+    <string name="road_narrows_on_the_right_left_if_reversed_">Road narrows on the right (left if reversed)</string>
+    <string name="end_of_dual_carriageway">End of dual carriageway</string>
+    <string name="two_way_traffic">Two-way traffic</string>
+    <string name="two_way_traffic_on_route_crossing_ahead">Two-way traffic on route crossing ahead</string>
+    <string name="steep_descent">Steep descent</string>
+    <string name="steep_ascent">Steep ascent</string>
+    <string name="opening_or_swing_bridge">Opening or swing bridge</string>
+    <string name="riverbank_or_quayside">Riverbank or quayside</string>
+    <string name="water_course_alongside_road">Water course alongside road</string>
+    <string name="soft_verges_left">Soft verges left</string>
+    <string name="soft_verges_right">Soft verges right</string>
+    <string name="tunnel">Tunnel</string>
+    <string name="hump_bridge">Hump bridge</string>
+    <string name="uneven_road">Uneven road</string>
+    <string name="slippery_road">Slippery road</string>
+    <string name="side_winds">Side winds</string>
+    <string name="low_flying_aircraft_or_sudden_noise">Low-flying aircraft or sudden noise</string>
+    <string name="low_flying_helicopters_or_sudden_noise">Low-flying helicopters or sudden noise</string>
+    <string name="falling_or_fallen_rocks">Falling or fallen rocks</string>
+    <string name="traffic_queues_likely_ahead">Traffic queues likely ahead</string>
+    <string name="slow_moving_military_vehicles_likely_ahead">Slow-moving military vehicles likely ahead</string>
+    <string name="slow_moving_vehicles">Slow-moving vehicles</string>
+    <string name="ice_or_snowdrifts">Ice or Snowdrifts</string>
+    <string name="other_dangers_must_be_used_to_indicate_the_hazard_">Other dangers (must be used to indicate the
+        hazard)
+    </string>
+    <string name="zebra_crossing">Zebra crossing</string>
+    <string name="pedestrians_ahead">Pedestrians ahead</string>
+    <string name="frail_blind_disabled_pedestrians_likely_crossing">Frail / blind / disabled pedestrians likely
+        crossing
+    </string>
+    <string name="children_going_to_or_from_school">Children going to or from school</string>
+    <string name="horse_drawn_vehicles_likely_ahead">Horse-drawn vehicles likely ahead</string>
+    <string name="accompanied_horses_or_ponies_likely_ahead_or_crossing">Accompanied horses or ponies likely ahead or
+        crossing
+    </string>
+    <string name="wild_horses_or_ponies">Wild horses or ponies</string>
+    <string name="wild_animals">Wild animals</string>
+    <string name="cattle">Cattle</string>
+    <string name="tramway">Tramway</string>
+    <string name="give_way_ahead">Give way ahead</string>
+    <string name="stop_ahead">Stop ahead</string>
+    <string name="distance_to_level_crossing">Distance to level crossing</string>
+    <string name="obstacle">Obstacle</string>
+    <string name="obstacle_left">Obstacle left</string>
+    <string name="obstacle_right">Obstacle right</string>
+    <string name="no_hand_vehicles">No hand vehicles</string>
+    <string name="no_motorcycles">No motorcycles</string>
+    <string name="no_mopeds">No mopeds</string>
+    <string name="no_motor_vehicles">No motor vehicles</string>
+    <string name="no_agricle_vehicles">No agricle vehicles</string>
+    <string name="no_animal_drawn_vehicles">No animal-drawn vehicles</string>
+    <string name="toll_post">Toll post</string>
+    <string name="no_horn">No horn</string>
+    <string name="customs">Customs</string>
+    <string name="minimum_distance">Minimum distance</string>
+    <string name="no_motor_vehicles_both_car_and_motorcycle_">No motor vehicles (both car and motorcycle)</string>
+    <string name="priority_over_vehicles_from_the_opposite_direction">Priority over vehicles from the opposite
+        direction
+    </string>
+    <string name="no_vehicles">No vehicles</string>
+    <string name="no_vehicles_exceeding_width_on_the_sign">No vehicles exceeding width on the sign</string>
+    <string name="no_vehicles_exceeding_height_on_the_sign">No vehicles exceeding height on the sign</string>
+    <string name="no_heavy_vehicles_exceeding_weight_on_the_sign">No heavy vehicles exceeding weight on the sign
+    </string>
+    <string name="no_heavy_vehicles">No heavy vehicles</string>
+    <string name="no_towed_caravans">No towed caravans</string>
+    <string name="no_entry">No Entry</string>
+    <string name="no_right_turn">No right turn</string>
+    <string name="no_left_turn">No left turn</string>
+    <string name="maximum_speed_limit">Maximum speed limit</string>
+    <string name="end_of_maximum_speed_limit">End of maximum speed limit</string>
+    <string name="priority_of_vehicles_from_the_opposite_direction">Priority of vehicles from the opposite direction
+    </string>
+    <string name="no_overtaking">No overtaking</string>
+    <string name="end_of_no_overtaking">End of no overtaking</string>
+    <string name="no_overtaking_by_heavy_vehicles">No overtaking by heavy vehicles</string>
+    <string name="maximum_single_weight">Maximum single weight</string>
+    <string name="end_of_all_local_bans_on_moving_vehicles">End of all local bans on moving vehicles</string>
+    <string name="maximum_length">Maximum length</string>
+    <string name="no_carrying_materials_that_pollute_water">No carrying materials that pollute water</string>
+    <string name="maximum_heavy">Maximum heavy</string>
+    <string name="carrying_explosives_prohibited_such_as_fireworks_">Carrying explosives prohibited (such as
+        fireworks)
+    </string>
+    <string name="no_u_turns">No U-turns</string>
+    <string name="police">Police</string>
+    <string name="stop_sign">Stop sign</string>
+    <string name="priority_road">Priority road</string>
+    <string name="end_of_priority_road">End of priority road</string>
+    <string name="stop_crossroads_by_children">Stop, crossroads by children</string>
+    <string name="go_ahead_for_manual_traffic_control_">Go ahead (for manual traffic control)</string>
+    <string name="give_way">Give way</string>
+    <string name="box_junction_do_not_stop_except_waiting_for_a_right_turn">Box junction, do not stop except waiting for
+        a right turn
+    </string>
+    <string name="no_parking">No parking</string>
+    <string name="no_stopping">No stopping</string>
+    <string name="no_parking_on_odd_days">No parking on odd days</string>
+    <string name="no_parking_on_even_days">No parking on even days</string>
+    <string name="no_parking_zone">No parking zone</string>
+    <string name="end_of_no_parking_zone">End of no parking zone</string>
+    <string name="go_straight_ahead_only">Go straight ahead only</string>
+    <string name="turn_left">Turn left</string>
+    <string name="turn_right">Turn right</string>
+    <string name="turn_left_ahead">Turn left ahead</string>
+    <string name="turn_right_ahead">Turn right ahead</string>
+    <string name="go_straight_or_turn_left_ahead">Go straight or turn left ahead</string>
+    <string name="go_straight_or_turn_right_ahead">Go straight or turn right ahead</string>
+    <string name="turn_left_or_right_ahead">Turn left or right ahead</string>
+    <string name="keep_left">Keep left</string>
+    <string name="keep_right">Keep right</string>
+    <string name="pass_on_either_side">Pass on either side</string>
+    <string name="roundabout_mandatory_">Roundabout (mandatory)</string>
+    <string name="one_way_traffic">One-way traffic</string>
+    <string name="one_way_road_lateral_">One-way road (lateral)</string>
+    <string name="minimum_speed_limit">Minimum speed limit</string>
+    <string name="end_of_minimum_speed_limit">End of minimum speed limit</string>
+    <string name="snow_chains_mandatory">Snow chains mandatory</string>
+    <string name="horse_street_mandatory">Horse street mandatory</string>
+    <string name="pedestrian_road_mandatory">Pedestrian road mandatory</string>
+    <string name="curving_road_surface_the_speed_limit_is_set">Curving road surface, the speed limit is set</string>
+    <string name="humped_crossing">Humped crossing</string>
+    <string name="humped_pelican_crossing">Humped «pelican» crossing</string>
+    <string name="school">School</string>
+    <string name="road_humps_left">Road humps left</string>
+    <string name="road_humps_right">Road humps right</string>
+    <string name="road_humps">Road humps</string>
+    <string name="confirmation_sign_with_highway_">Confirmation sign (with highway)</string>
+    <string name="direction_sign_at_a_road_crossing_">Direction sign (at a road crossing)</string>
+    <string name="direction_sign_white_">Direction sign (white)</string>
+    <string name="direction_sign_blue_">Direction sign (blue)</string>
+    <string name="bus_stop">Bus stop</string>
+    <string name="pedestrian_crossing">Pedestrian crossing</string>
+    <string name="parking">Parking</string>
+    <string name="dead_end_straight_ahead">Dead end straight ahead</string>
+    <string name="dead_end_left">Dead end left</string>
+    <string name="dead_end_right">Dead end right</string>
+    <string name="emergency_phone">Emergency phone</string>
+    <string name="express_road">Express road</string>
+    <string name="end_of_expressway">End of expressway</string>
+    <string name="open_road_only_for_vehicles_with_snow_chains_">Open road (Only for vehicles with snow chains)</string>
+    <string name="warning_for_driving_on_the_left">Warning for driving on the left</string>
+    <string name="vehicle_exit">Vehicle exit</string>
+    <string name="general_speed_limits">General speed limits</string>
+    <string name="direction_sign_at_a_roundabout">Direction sign at a roundabout</string>
+    <string name="confirmation_sign">Confirmation sign</string>
+    <string name="allowed_only_for_disabled_vehicles">Allowed only for disabled vehicles</string>
+    <string name="_no_stop_and_parking_perpendicular_to_the_street">«No stop and parking», perpendicular to the street
+    </string>
+    <string name="repetition_of_no_stop_and_parking_perpendicular_to_the_street">Repetition of «No stop and parking»,
+        perpendicular to the street
+    </string>
+    <string name="end_of_no_stop_and_parking_placed_perpendicular_to_the_street">End of «No stop and parking» placed
+        perpendicular to the street
+    </string>
+    <string name="distance_from_the_sign_to_the_signed_area">Distance from the sign to the signed area</string>
+    <string name="length_of_the_hazardous_section_of_prohibition_or_restriction_area">Length of the hazardous section of
+        prohibition or restriction area
+    </string>
+    <string name="a_no_stop_and_parking_sign_from_the_position_of_the_sign_placed_parallel_to_the_street">A no stop and parking sign from the position of the sign placed parallel to the street</string>
+    <string name="reminder_of_a_no_stop_and_parking_sign_placed_parallel_to_the_street">Reminder of a no stop and
+        parking sign placed parallel to the street
+    </string>
+    <string name="icy_road">Icy road</string>
+    <string name="direction_of_priority_road">Direction of priority road</string>
+    <string name="entering_a_residential_area_the_speed_is_limited">Entering a residential area - The speed is limited
+    </string>
+    <string name="highway">Highway</string>
+    <string name="highway_exit_warning">Highway exit warning</string>
+    <string name="motorway_exit">Motorway exit</string>
+    <string name="cycle_lane">Cycle lane</string>
+    <string name="cycle_path_separated_from_pedestrian_path">Cycle path separated from pedestrian path</string>
+    <string name="cycle_path_separated_from_pedestrian_path_alternative_">Cycle path separated from pedestrian path
+        (alternative)
+    </string>
+    <string name="road_shared_by_cyclists_and_pedestrians">Road shared by cyclists and pedestrians</string>
+    <string name="road_shared_by_bicycles_and_buses">Road shared by bicycles and buses</string>
+    <string name="no_bicycles_allowed">No bicycles allowed</string>
+    <string name="road_with_special_measures_for_cyclists">Road with special measures for cyclists</string>
+    <string name="speed_camera">Speed camera</string>
+    <string name="roundabout_to_population_centres_and_turkish_occupied_areas">Roundabout to population centres and
+        Turkish-occupied areas
+    </string>
+    <string name="stop_turkish_occupied_area">Stop — Turkish occupied area</string>
+    <string name="electrified_overhead_cable_ahead">Electrified overhead cable ahead</string>
+    <string name="road_works">Road works</string>
+    <string name="loose_chippings">Loose chippings</string>
+    <string name="no_barrier_level_crossing_nearby_">No barrier level crossing (nearby)</string>
+    <string name="level_crossing_with_barrier_or_gate">Level crossing with barrier or gate</string>
+    <string name="level_crossing_without_barrier_or_gate">Level crossing without barrier or gate</string>
+    <string name="risk_of_grounding">Risk of grounding</string>
+    <string name="first_aid">First aid</string>
+    <string name="repairs">Repairs</string>
+    <string name="telephone">Telephone</string>
+    <string name="petrol_station">Petrol station</string>
+    <string name="hotel_or_motel">Hotel or motel</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="refreshments">Refreshments</string>
+    <string name="picnicsite">Picnicsite</string>
+    <string name="hiking_trail">Hiking trail</string>
+    <string name="camping_site">Camping site</string>
+    <string name="caravan_site">Caravan site</string>
+    <string name="camping_and_caravan_site">Camping and caravan site</string>
+    <string name="youth_center">Youth center</string>
+    <string name="information">Information</string>
+    <string name="toilet">Toilet</string>
+    <string name="airport">Airport</string>
+    <string name="helicopter">Helicopter</string>
+    <string name="pedestrian_overpass">Pedestrian overpass</string>
+    <string name="pedestrian_underpass">Pedestrian underpass</string>
+    <string name="pedestrian_ramp">Pedestrian ramp</string>
+    <string name="roundabout_2_lanes_directions">Roundabout 2 lanes directions</string>
+    <string name="roundabout_3_lanes_directions">Roundabout 3 lanes directions</string>
+    <string name="single_line_no_parking_or_overtaking">Single line - no parking or overtaking</string>
+    <string name="double_line_no_parking_or_overtaking">Double line - no parking or overtaking</string>
+    <string name="overtaking_allowed_from_right">Overtaking allowed from right</string>
+    <string name="overtaking_is_allowed">Overtaking is allowed</string>
+    <string name="no_parking_or_waiting_or_overtaking">No parking or waiting or overtaking</string>
+    <string name="on_carriageway_side_no_parking">On carriageway side — No parking</string>
+    <string name="on_carriageway_side_no_parking_or_stopping">On carriageway side — No parking or stopping</string>
+    <string name="give_way_to_traffic_on_main_road">Give way to traffic on main road</string>
+    <string name="stop_and_give_way">Stop and give way</string>
+    <string name="directions_on_roundabout">Directions on roundabout</string>
+    <string name="stop_for_traffic_from_the_front">Stop for traffic from the front</string>
+    <string name="stop_for_traffic_from_both_front_and_behind">Stop for traffic from both front and behind</string>
+    <string name="stop_for_traffic_from_behind">Stop for traffic from behind</string>
+    <string name="proceed_to_traffic_from_the_front">Proceed to traffic from the front</string>
+    <string name="proceed_to_traffic_from_the_side">Proceed to traffic from the side</string>
+    <string name="proceed_to_traffic_from_the_behind">Proceed to traffic from the behind</string>
+</resources>
