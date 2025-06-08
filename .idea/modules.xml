@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/cysigns-android.iml" filepath="$PROJECT_DIR$/.idea/cysigns-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Cy_Signs.iml" filepath="$PROJECT_DIR$/.idea/modules/Cy_Signs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Cy_Signs.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Cy_Signs.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Cy_Signs.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Cy_Signs.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Cy_Signs.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Cy_Signs.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Cy_Signs.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Cy_Signs.app.unitTest.iml" />
     </modules>
   </component>
 </project>
