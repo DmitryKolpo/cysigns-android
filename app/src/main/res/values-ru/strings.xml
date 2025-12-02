@@ -86,7 +86,7 @@
     <string name="no_left_turn">Поворот налево запрещен</string>
     <string name="maximum_speed_limit">Максимальное ограничение скорости</string>
     <string name="end_of_maximum_speed_limit">Конец максимального ограничения скорости</string>
-    <string name="priority_of_vehicles_from_the_opposite_direction">Преимущество встречных транспортнх средств</string>
+    <string name="priority_of_vehicles_from_the_opposite_direction">Преимущество встречных транспортных средств</string>
     <string name="no_overtaking">Обгон запрещён</string>
     <string name="end_of_no_overtaking">Конец запрета на обгон</string>
     <string name="no_overtaking_by_heavy_vehicles">Запрещен обгон для грузовых ТС</string>
@@ -123,8 +123,8 @@
     <string name="keep_right">Держитесь правее</string>
     <string name="pass_on_either_side">Движение в любую сторону</string>
     <string name="roundabout_mandatory_">Круговое движение (предписание)</string>
-    <string name="one_way_traffic">Односторонее движение</string>
-    <string name="one_way_road_lateral_">Односторонее движение (боковое)</string>
+    <string name="one_way_traffic">Одностороннее движение</string>
+    <string name="one_way_road_lateral_">Одностороннее движение (боковое)</string>
     <string name="minimum_speed_limit">Минимальная скорость</string>
     <string name="end_of_minimum_speed_limit">Конец минимальной скорости</string>
     <string name="snow_chains_mandatory">Обязательные цепи на колесах в зимний период</string>
@@ -182,7 +182,7 @@
     <string name="stop_turkish_occupied_area">Стоп — оккупированная территория</string>
     <string name="electrified_overhead_cable_ahead">Кабели высокого напряжения впереди</string>
     <string name="road_works">Дорожные работы</string>
-    <string name="loose_chippings">Неровный щебень</string>
+    <string name="loose_chippings">Выброс гравия</string>
     <string name="no_barrier_level_crossing_nearby_">ЖД переезд без шлагбаума или ворот (рядом)</string>
     <string name="level_crossing_with_barrier_or_gate">ЖД переезд с шлагбаумом или воротами</string>
     <string name="level_crossing_without_barrier_or_gate">ЖД переезд без шлагбаума или ворот</string>
@@ -223,6 +223,6 @@
     <string name="stop_for_traffic_from_both_front_and_behind">Стоп для транспорта спереди и сзади</string>
     <string name="stop_for_traffic_from_behind">Стоп для транспорта сзади</string>
     <string name="proceed_to_traffic_from_the_front">Движение разрешено для транспорта спереди</string>
-    <string name="proceed_to_traffic_from_the_side">Движеие разрешено для транспорта сбоку</string>
+    <string name="proceed_to_traffic_from_the_side">Движение разрешено для транспорта сбоку</string>
     <string name="proceed_to_traffic_from_the_behind">Движение разрешено для транспорта сзади</string>
 </resources>

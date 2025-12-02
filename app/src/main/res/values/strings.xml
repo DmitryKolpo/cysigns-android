@@ -73,7 +73,7 @@
     <string name="no_motorcycles">No motorcycles</string>
     <string name="no_mopeds">No mopeds</string>
     <string name="no_motor_vehicles">No motor vehicles</string>
-    <string name="no_agricle_vehicles">No agricle vehicles</string>
+    <string name="no_agricle_vehicles">No agricultural vehicles</string>
     <string name="no_animal_drawn_vehicles">No animal-drawn vehicles</string>
     <string name="toll_post">Toll post</string>
     <string name="no_horn">No horn</string>
@@ -222,7 +222,7 @@
     <string name="hotel_or_motel">Hotel or motel</string>
     <string name="restaurant">Restaurant</string>
     <string name="refreshments">Refreshments</string>
-    <string name="picnicsite">Picnicsite</string>
+    <string name="picnicsite">Picnic site</string>
     <string name="hiking_trail">Hiking trail</string>
     <string name="camping_site">Camping site</string>
     <string name="caravan_site">Caravan site</string>
