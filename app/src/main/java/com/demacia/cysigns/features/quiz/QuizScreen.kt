@@ -8,7 +8,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.demacia.cysigns.features.quiz.ui.Event
 import com.demacia.cysigns.features.quiz.ui.Mode
 import com.demacia.cysigns.features.quiz.ui.QuizContent

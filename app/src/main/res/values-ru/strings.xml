@@ -168,7 +168,7 @@
     <string name="direction_of_priority_road">Направление главной дороги</string>
     <string name="entering_a_residential_area_the_speed_is_limited">Въезд в жилую зону - Скорость ограничена</string>
     <string name="highway">Автомагистраль</string>
-    <string name="highway_exit_warning">Предупреждение выезде с автомагистрали</string>
+    <string name="highway_exit_warning">Предупреждение о выезде с автомагистрали</string>
     <string name="motorway_exit">Выезд с автомагистрали</string>
     <string name="cycle_lane">Велосипедная дорожка</string>
     <string name="cycle_path_separated_from_pedestrian_path">Велосипедная дорожка отделена от пешеходной</string>

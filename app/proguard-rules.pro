@@ -19,3 +19,6 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Hilt-generated code references this compile-time-only annotation; safe to ignore at runtime.
+-dontwarn com.google.errorprone.annotations.CanIgnoreReturnValue
